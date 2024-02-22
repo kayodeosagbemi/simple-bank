@@ -18,15 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AccountController {
     @GetMapping("/{accountNumber}")
     public String getAccountInfo(@PathVariable String accountNumber) {
-        return accountNumber + " is a Savings Account";
+        //TODO: Read from the database
+        if (accountNumber !=null && accountNumber.trim() !="") 
+            return accountNumber + " is a Savings Account";
+        else 
+            return "account number is invalid: "+accountNumber;
     }
 
-    @PostMapping("/accounts/create")
+    @PostMapping("/create")
     public ResponseEntity<String> createAccount(@RequestBody AccountRequest accountRequest) {
         // TODO: more validation logic
         if (accountRequest.getAccountName() == "" 
         || accountRequest.getAccountNumber()=="" 
-        || accountRequest.getInitialBalance() <  0 
+        || accountRequest.getInitialBalance() <=  0 
         || accountRequest.getAccountType()=="") {
             return new ResponseEntity<>("Account request validation failed", HttpStatus.BAD_REQUEST);
         }
