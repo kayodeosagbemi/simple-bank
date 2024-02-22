@@ -1,5 +1,8 @@
 package com.simplebank.simplebank.model;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 // Model class to represent the JSON request body
 public class AccountRequest {
     private String accountName;
@@ -39,6 +42,14 @@ public class AccountRequest {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public boolean isValid() {
+        return this.getAccountName() != "" 
+        && this.getAccountNumber()!="" 
+        && this.getInitialBalance() >  0 
+        && this.getAccountType()!=""
+        ;
     }
 
     @Override

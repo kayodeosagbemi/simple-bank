@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,10 +29,8 @@ public class AccountController {
     @PostMapping("/create")
     public ResponseEntity<String> createAccount(@RequestBody AccountRequest accountRequest) {
         // TODO: more validation logic
-        if (accountRequest.getAccountName() == "" 
-        || accountRequest.getAccountNumber()=="" 
-        || accountRequest.getInitialBalance() <=  0 
-        || accountRequest.getAccountType()=="") {
+        if (accountRequest == null 
+        || !accountRequest.isValid()) {
             return new ResponseEntity<>("Account request validation failed", HttpStatus.BAD_REQUEST);
         }
 
@@ -43,6 +42,10 @@ public class AccountController {
 
         // Return a success response
         return new ResponseEntity<>("Account created successfully with account number "+accountRequest.getAccountNumber(), HttpStatus.CREATED);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<String> updateAccount(@RequestBody AccountRequest newAcctReq) {
+        return new ResponseEntity<>("Successfully Updated Account");
     }
 
 
