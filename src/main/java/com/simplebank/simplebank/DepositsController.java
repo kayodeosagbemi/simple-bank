@@ -1,9 +1,5 @@
 package com.simplebank.simplebank;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import com.simplebank.simplebank.model.AccountRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.simplebank.simplebank.model.AccountRequest;
 
 @RestController
-@RequestMapping("/api/accounts")
-public class AccountController {
-    @GetMapping("/{accountNumber}")
+@RequestMapping("/api/deposits")
+public class DepositsController {
+     @GetMapping("/{accountNumber}")
     public String getAccountInfo(@PathVariable String accountNumber) {
         //TODO: Read from the database
         if (accountNumber !=null && accountNumber.trim() !="") 
@@ -52,9 +48,4 @@ public class AccountController {
     public ResponseEntity<String> deleteAccount(@PathVariable String accountNumber) {
         return new ResponseEntity<>("Successfully Updated Account");
     }
-
-    
-
-
-    
 }

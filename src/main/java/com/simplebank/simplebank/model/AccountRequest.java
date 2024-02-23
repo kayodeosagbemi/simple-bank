@@ -1,8 +1,5 @@
 package com.simplebank.simplebank.model;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 // Model class to represent the JSON request body
 public class AccountRequest {
     private String accountName;
