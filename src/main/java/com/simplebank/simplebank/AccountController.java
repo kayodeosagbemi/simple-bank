@@ -35,12 +35,9 @@ public class AccountController {
             return new ResponseEntity<>("Account request validation failed", HttpStatus.BAD_REQUEST);
         }
 
-        // For simplicity, just printing the received account details
-        System.out.println("Received account details: " + accountRequest);
+        //TODO: Save into a database
 
-        // You can perform account creation logic here
-        // For example, you might want to save the account details to a database
-
+     
         // Return a success response
         return new ResponseEntity<>("Account created successfully with account number "+accountRequest.getAccountNumber(), HttpStatus.CREATED);
     }
